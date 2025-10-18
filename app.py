@@ -6,7 +6,7 @@ import numpy as np
 # ----------------------------------------------------------
 # 1️⃣ Load the trained CatBoost model
 # ----------------------------------------------------------
-with open("catboost_model.pkl", "rb") as file:
+with open(models/catboost_model.pkl", "rb") as file:
     model = pickle.load(file)
 
 st.set_page_config(page_title="Used Car Price Prediction", layout="centered")
@@ -73,3 +73,4 @@ if st.button("🔍 Predict Price"):
 # ----------------------------------------------------------
 st.markdown("---")
 st.caption("Developed by Sowjanya — Data Scientist | Used Car Price Prediction Project")
+
