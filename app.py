@@ -86,16 +86,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Streamlit app content
-st.title("Car Sales Price Prediction")
-st.write("Enter car details in the sidebar to predict selling price.")
-
 
 # ----------------------------------------------------------
 # 6️⃣ Footer
 # ----------------------------------------------------------
 st.markdown("---")
 st.caption("Developed by Sowjanya — Data Scientist | Used Car Price Prediction Project")
+
 
 
 
