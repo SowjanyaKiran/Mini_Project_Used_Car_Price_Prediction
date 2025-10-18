@@ -57,11 +57,46 @@ if st.sidebar.button("Predict Price"):
     predicted_price = model.predict(input_df)
     st.write(f"The predicted selling price for the car is: ₹{predicted_price[0]:,.2f}")
 
+
+
+import streamlit as st
+
+# Set page config
+st.set_page_config(page_title="Car Sales Price Prediction", layout="wide")
+
+# Add custom CSS for background image
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url("https://images.unsplash.com/photo-1603782276214-0c8f6f2db4a8?auto=format&fit=crop&w=1350&q=80");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    /* Optional: make text more readable */
+    .stApp .block-container {
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 2rem;
+        border-radius: 10px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Streamlit app content
+st.title("Car Sales Price Prediction")
+st.write("Enter car details in the sidebar to predict selling price.")
+
+
 # ----------------------------------------------------------
 # 6️⃣ Footer
 # ----------------------------------------------------------
 st.markdown("---")
 st.caption("Developed by Sowjanya — Data Scientist | Used Car Price Prediction Project")
+
 
 
 
