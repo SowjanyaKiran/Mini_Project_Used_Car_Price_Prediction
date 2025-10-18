@@ -30,4 +30,5 @@ This is a **Streamlit** web application for predicting the selling price of used
 1. **Clone the repository**:
 
    git clone : https://github.com/SowjanyaKiran/Mini_Project_Used_Car_Price_Prediction/
+   
    cd used-car-price-prediction
