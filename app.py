@@ -2,14 +2,13 @@ import streamlit as st
 import pandas as pd
 import pickle
 import numpy as np
+from catboost import CatBoostRegressor
 
 # ----------------------------------------------------------
-# 1️⃣ Load the trained CatBoost model
+# 1️⃣ Load the trained CatBoost model safely
 # ----------------------------------------------------------
-with open(models/catboost_model.pkl", "rb") as file:
-    model = pickle.load(file)
-
-st.set_page_config(page_title="Used Car Price Prediction", layout="centered")
+model = CatBoostRegressor()
+model.load_model("catboost_model.pkl")
 
 # ----------------------------------------------------------
 # 2️⃣ Page Title and Description
@@ -73,4 +72,5 @@ if st.button("🔍 Predict Price"):
 # ----------------------------------------------------------
 st.markdown("---")
 st.caption("Developed by Sowjanya — Data Scientist | Used Car Price Prediction Project")
+
 
