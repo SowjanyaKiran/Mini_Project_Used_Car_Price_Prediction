@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import pickle
-from sklearn.preprocessing import StandardScaler
 
 # -------------------- Page Config --------------------
 st.set_page_config(page_title="Car Sales Price Prediction", layout="wide")
@@ -28,15 +27,12 @@ def set_bg_image(image_url):
         unsafe_allow_html=True
     )
 
-# Example car image URL (replace with your own if needed)
+# Example car image
 set_bg_image("https://images.unsplash.com/photo-1603782276214-0c8f6f2db4a8?auto=format&fit=crop&w=1350&q=80")
 
-# -------------------- Load Model and Scaler --------------------
+# -------------------- Load CatBoost Model --------------------
 with open('catboost_model.pkl', 'rb') as f:
     model = pickle.load(f)
-
-with open('scaler.pkl', 'rb') as f:
-    scaler = pickle.load(f)
 
 # -------------------- Sidebar Inputs --------------------
 st.sidebar.header("Enter Car Details")
@@ -73,8 +69,15 @@ input_data = {
 
 input_df = pd.DataFrame([input_data])
 
-# Scale numeric features
-input_df[['km_driven', 'car_age']] = scaler.transform(input_df[['km_driven', 'car_age']])
+# -------------------- Scale Numeric Features --------------------
+# Replace these with the mean and std from your training data
+KM_DRIVEN_MEAN = 50000   # example, replace with actual training mean
+KM_DRIVEN_STD = 30000    # example, replace with actual training std
+CAR_AGE_MEAN = 5         # example, replace with actual training mean
+CAR_AGE_STD = 3          # example, replace with actual training std
+
+input_df['km_driven'] = (input_df['km_driven'] - KM_DRIVEN_MEAN) / KM_DRIVEN_STD
+input_df['car_age'] = (input_df['car_age'] - CAR_AGE_MEAN) / CAR_AGE_STD
 
 # -------------------- Prediction --------------------
 if st.sidebar.button("Predict Price"):
@@ -90,6 +93,7 @@ if st.sidebar.button("Predict Price"):
 # ----------------------------------------------------------
 st.markdown("---")
 st.caption("Developed by Sowjanya — Data Scientist | Used Car Price Prediction Project")
+
 
 
 
