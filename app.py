@@ -13,8 +13,17 @@ st.title("🚗 Car Sales Price Prediction")
 # Collect user input for prediction
 st.sidebar.header("Enter Car Details")
 
+# Common popular car names
+car_names = [
+    "Maruti Swift", "Maruti Alto", "Maruti Baleno", "Hyundai i10", "Hyundai i20",
+    "Hyundai Creta", "Honda City", "Honda Amaze", "Tata Nexon", "Tata Tiago",
+    "Kia Seltos", "Mahindra Scorpio", "Mahindra XUV500", "Toyota Innova",
+    "Toyota Fortuner", "Renault Kwid", "Skoda Rapid", "Volkswagen Polo",
+    "Ford EcoSport", "Nissan Magnite"
+]
+
 # User inputs for prediction
-car_name = st.sidebar.text_input("Car Name (e.g., Maruti Swift, Hyundai i20, etc.)", "Maruti Swift")
+car_name = st.sidebar.selectbox("Select Car Name", car_names)
 car_year = st.sidebar.number_input("Car Year", min_value=2000, max_value=2025, value=2015)
 km_driven = st.sidebar.number_input("Kilometers Driven (in km)", min_value=0, value=50000)
 fuel_type = st.sidebar.selectbox("Fuel Type", ["Petrol", "Diesel", "CNG", "Electric", "LPG"])
@@ -46,14 +55,14 @@ input_data = {
     'car_age': car_age
 }
 
-# Convert the input data to a DataFrame
+# Convert input to DataFrame
 input_df = pd.DataFrame([input_data])
 
-# Load scaler and scale numeric features
+# Standardize numerical features
 scaler = StandardScaler()
 input_df[['km_driven', 'car_age']] = scaler.fit_transform(input_df[['km_driven', 'car_age']])
 
-# Predict the selling price using the model
+# Predict price
 if st.sidebar.button("Predict Price"):
     predicted_price = model.predict(input_df)
     
@@ -62,8 +71,6 @@ if st.sidebar.button("Predict Price"):
     st.write(f"**Predicted Selling Price:** ₹{predicted_price[0]:,.2f}")
     st.success(f"✅ The estimated price for your {car_name} is ₹{predicted_price[0]:,.2f}")
 
-# ----------------------------------------------------------
 # Footer
-# ----------------------------------------------------------
 st.markdown("---")
 st.caption("Developed by Sowjanya — Data Scientist | Used Car Price Prediction Project")
