@@ -62,3 +62,4 @@ if st.sidebar.button("Predict Price"):
 # ----------------------------------------------------------
 st.markdown("---")
 st.caption("Developed by Sowjanya — Data Scientist | Used Car Price Prediction Project")
+
