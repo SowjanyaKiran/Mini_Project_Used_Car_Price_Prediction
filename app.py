@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 model = pickle.load(open('catboost_model.pkl', 'rb'))
 
 # Streamlit app layout
-st.title("🚗 Car Sales Price Prediction")
+st.title("Car Sales Price Prediction")
 
 # Collect user input for prediction
 st.sidebar.header("Enter Car Details")
@@ -66,7 +66,7 @@ input_df[['km_driven', 'car_age']] = scaler.fit_transform(input_df[['km_driven',
 if st.sidebar.button("Predict Price"):
     predicted_price = model.predict(input_df)
     
-    st.subheader("🎯 Prediction Result")
+    st.subheader("Prediction Result")
     st.write(f"**Car Name:** {car_name}")
     st.write(f"**Predicted Selling Price:** ₹{predicted_price[0]:,.2f}")
     st.success(f"✅ The estimated price for your {car_name} is ₹{predicted_price[0]:,.2f}")
@@ -74,3 +74,4 @@ if st.sidebar.button("Predict Price"):
 # Footer
 st.markdown("---")
 st.caption("Developed by Sowjanya — Data Scientist | Used Car Price Prediction Project")
+
